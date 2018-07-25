@@ -27,8 +27,9 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <link href="<?php echo site_url('css/themes/collapsible-menu/style.css'); ?>" type="text/css" rel="stylesheet">
     <!-- Custome CSS-->
     <link href="<?php echo site_url('css/custom/custom.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('css/layouts/page-center.css'); ?>" type="text/css" rel="stylesheet">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-    <link href="vendors/perfect-scrollbar/perfect-scrollbar.css   <?php echo site_url('images/icon/apple-watch.png'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/perfect-scrollbar/perfect-scrollbar.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/jvectormap/jquery-jvectormap.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

@@ -28,6 +28,7 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <link href="<?php echo site_url('css/themes/collapsible-menu/style.css'); ?>" type="text/css" rel="stylesheet">
     <!-- Custome CSS-->
     <link href="<?php echo site_url('css/custom/custom.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('css/layouts/page-center.css'); ?>" type="text/css" rel="stylesheet">
     <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
     <link href="<?php echo site_url('vendors/perfect-scrollbar/perfect-scrollbar.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/jvectormap/jquery-jvectormap.css'); ?>" type="text/css" rel="stylesheet">

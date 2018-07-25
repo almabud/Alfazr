@@ -5,7 +5,10 @@ class Dashboard extends Admin_Controller {
     }
 
     public function index() {
-    	$this->load->view('admin/_layout_main');
+    	$this->load->view('admin/_layout_main',$this->data);
+    }
+    public function  login(){
+        $this->load->view('admin/user-login',$this->data);
     }
     
    /* public function modal() {
