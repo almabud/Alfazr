@@ -158,22 +158,6 @@
                                     <i class="material-icons">dashboard</i>
                                     <span class="nav-text">Dashboard</span>
                                 </a>
-                                <!--<div class="collapsible-body">
-                                    <ul>
-                                        <li class="active">
-                                            <a href="index.html">
-                                                <i class="material-icons">keyboard_arrow_right</i>
-                                                <span>eCommerce</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="dashboard-analytics.html">
-                                                <i class="material-icons">keyboard_arrow_right</i>
-                                                <span>Analytics</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>-->
                             </li>
                             <li class="bold">
                                 <a href="app-email.html" class="waves-effect waves-cyan">
