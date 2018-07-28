@@ -9,36 +9,38 @@
     <!-- End Page Loading -->
     <div id="login-page" class="row">
       <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form">
+        <form class="login-form" method="post" action="">
           <div class="row">
             <div class="input-field col s12 center">
-              <img src="../../images/logo/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
+              <img src="<?php echo site_url('images/logo/login-logo.png'); ?>" alt="" class="circle responsive-img valign profile-image-login">
               <p class="center login-form-text">Material Design Admin Template</p>
             </div>
           </div>
-          <div class="row margin">
+            <?php echo validation_errors(); ?>
+
+            <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">person_outline</i>
-              <input id="username" type="text">
+              <input id="username" type="text" name="username">
               <label for="username" class="center-align">Username</label>
             </div>
           </div>
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">lock_outline</i>
-              <input id="password" type="password">
+              <input id="password" type="password" name="password">
               <label for="password">Password</label>
             </div>
           </div>
           <div class="row">
             <div class="col s12 m12 l12 ml-2 mt-3">
-              <input type="checkbox" id="remember-me" />
+              <input type="checkbox" id="remember-me" name="remember-me" />
               <label for="remember-me">Remember me</label>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-              <a href="index.html" class="btn waves-effect waves-light col s12">Login</a>
+                <input type="submit" class="btn waves-effect waves-light col s12" value="Login">
             </div>
           </div>
           <div class="row">
