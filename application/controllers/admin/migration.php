@@ -16,6 +16,12 @@ class Migration extends Admin_Controller
 		else {
 			echo 'Migration worked!';
 		}
+       /* $this->db = $this->load->database('default',TRUE);
+
+        if(!empty($this->db))
+            echo "Connected!"."\n";
+        else
+            echo "Closed"."\n";*/
 	
 	}
 
