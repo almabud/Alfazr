@@ -9,6 +9,10 @@ class Dashboard extends Admin_Controller {
             redirect('admin/user/login');
         $this->load->view('admin/_layout_main', $this->data);
     }
+    public function profile()
+    {
+        $this->load->view('admin/profile', $this->data);
+    }
 
    /* public function modal() {
     	$this->load->view('admin/_layout_modal', $this->data);
