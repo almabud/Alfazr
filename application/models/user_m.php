@@ -38,7 +38,8 @@ class User_M extends MY_Model
 			$data = array(
 				'email' => $user->email,
 				'id' => $user->id,
-				'name' => $name->F_name ." ". $name->L_name,
+				'fname' => $name->F_name,
+                'lname' => $name->L_name,
 				'loggedin' => TRUE
 			);
             $this->session->set_userdata($data);

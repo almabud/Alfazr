@@ -123,7 +123,7 @@
                                 <i class="material-icons">lock_outline</i> Lock</a>
                         </li>
                         <li>
-                            <a href="<?php echo site_url('admin/user/logout'); ?>" class="grey-text text-darken-1">
+                            <a href="<?php  echo Base_url().'admin/user/logout'; ?>" class="grey-text text-darken-1">
                                 <i class="material-icons">keyboard_tab</i> Logout</a>
                         </li>
                     </ul>
