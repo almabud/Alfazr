@@ -10,10 +10,6 @@ class Migration_User_Profile extends CI_Migration {
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
-			'email' => array(
-				'type' => 'VARCHAR',
-				'constraint' => '100',
-			),
 			'F_name' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '100',

@@ -20,7 +20,7 @@ class Migration_Profile_Photo extends CI_Migration{
                 'type' => 'VARCHAR',
                 'constraint' => '255',
             ),
-            'l_id' => array(
+            'pro_id' => array(
                 'type' => 'INT',
                 'constraint' => 11,
                 'unsigned' => TRUE
@@ -29,7 +29,7 @@ class Migration_Profile_Photo extends CI_Migration{
         ));
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('l_id', TRUE);
-        $this->dbforge->add_field('CONSTRAINT FOREIGN KEY (l_id) REFERENCES users_log(id) ON DELETE CASCADE ON UPDATE CASCADE');
+        $this->dbforge->add_field('CONSTRAINT FOREIGN KEY (pro_id) REFERENCES profile(id) ON DELETE CASCADE ON UPDATE CASCADE');
         $this->dbforge->create_table('profile_photo');
     }
 

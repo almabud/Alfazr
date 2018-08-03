@@ -5,7 +5,10 @@ class Dashboard extends Admin_Controller {
     }
 
     public function index() {
-    	$this->load->view('admin/_layout_main',$this->data);
+      //  $this->user_m->loggedin() == TRUE || redirect('/admin/user/login');
+        var_dump($this->session->userdata());
+        echo "hello";
+    	//$this->load->view('admin/_layout_main',$this->data);
     }
 
    /* public function modal() {

@@ -13,36 +13,43 @@ class user extends Admin_Controller
         parent::__construct();
     }
     public function login(){
-
-      /*  $dashboard = 'admin/dashboard';
-        $this->user_m->loggedin() == FALSE || redirect($dashboard);
-
+     /*  // print_r($this->session->userdata());
+       // var_dump($this->user_m->loggedin());
+       // $this->user_m->loggedin() == FALSE || redirect('/admin/dashboard');
         $rules = $this->user_m->rules;
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == TRUE) {
-            // We can login and redirect
-            if ($this->user_m->login() == TRUE) {
-                redirect($dashboard);
+            $this->user_m->login();
+            if ($this->user_m->loggedin() == TRUE) {
+                redirect('/admin/dashboard');
             }
             else {
-                $this->session->set_flashdata('error', 'That email/password combination does not exist');
-                redirect('admin/user/login', 'refresh');
+                $this->session->set_flashdata('error', 'Invalid Email or Password');
+                //redirect('admin/user/login', 'refresh');
             }
-        }
-        $this->data['subview'] = 'admin/user/login';
-        $this->load->view('admin/_layout_modal', $this->data);*/
+        }*/
+
         $rules = $this->user_m->rules;
         $this->form_validation->set_rules($rules);
-        if ($this->form_validation->run() == TRUE) {
-            // We can login and redirect
-        }
+        if ($this->form_validation->run() == TRUE)
+        {
+            $this->user_m->login();
+            if($this->user_m->loggedin())
+            {
 
-      $this->load->view('admin/user-login',$this->data);
+                redirect('admin/dashboard');
+            }
+            else
+            {
+                $this->session->set_flashdata('error', 'Invalid Email or Password');
+            }
+        }
+          $this->load->view('admin/user-login',$this->data);
     }
 
     public function logout(){
         $this->user_m->logout();
-        redirect('admin/user/login');
+        $this->load->view('admin/user-login',$this->data);
     }
 
 }

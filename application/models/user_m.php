@@ -2,8 +2,8 @@
 class User_M extends MY_Model
 {
 	
-	protected $_table_name = 'users';
-	protected $_order_by = 'name';
+	protected $_table_name = 'users_log';
+	protected $_order_by = 'id';
 	public $rules = array(
 		'email' => array(
 			'field' => 'email', 
@@ -22,37 +22,45 @@ class User_M extends MY_Model
 		parent::__construct();
 	}
 
-	/*public function login ()
+	public function login ()
 	{
+	   // echo $this->input->post('email');
 		$user = $this->get_by(array(
 			'email' => $this->input->post('email'),
-			'password' => $this->hash($this->input->post('password')),
+            'password' => $this->hash($this->input->post('password'))
 		), TRUE);
-		
-		if (count($user)) {
+		if (count((array)$user)) {
 			// Log in user
+            $this->db->select(array('F_name','L_name'));
+            $this->db->from('profile');
+            $this->db->join('users_log', 'users_log.id = profile.l_id');
+            $name = $this->db->get()->row();
 			$data = array(
-				'name' => $user->name,
 				'email' => $user->email,
 				'id' => $user->id,
-				'loggedin' => TRUE,
+				'name' => $name->F_name ." ". $name->L_name,
+				'loggedin' => TRUE
 			);
-			$this->session->set_userdata($data);
+            $this->session->set_userdata($data);
 		}
 	}
 
 	public function logout ()
 	{
-		$this->session->sess_destroy();
+        session_destroy();
 	}
 
 	public function loggedin ()
 	{
-		return (bool) $this->session->userdata('loggedin');
+	    if($this->session->has_userdata('loggedin'))
+        {
+            return TRUE;
+        }
+	    return FALSE;
 	}
 
 	public function hash ($string)
 	{
 		return hash('sha512', $string . config_item('encryption_key'));
-	}*/
+	}
 }

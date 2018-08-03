@@ -9,26 +9,25 @@
     <!-- End Page Loading -->
     <div id="login-page" class="row">
       <div class="col s12 z-depth-4 card-panel">
-        <form class="login-form" method="post" action="">
-          <div class="row">
-            <div class="input-field col s12 center">
-              <img src="<?php echo site_url('images/logo/login-logo.png'); ?>" alt="" class="circle responsive-img valign profile-image-login">
-              <p class="center login-form-text">Material Design Admin Template</p>
-            </div>
+        <form action="login" class="login-form" method="post">
+           <div class="row">
+                <div class="input-field col s12 center">
+                  <img src="<?php echo site_url('images/logo/login-logo.png'); ?>" alt="" class="circle responsive-img valign profile-image-login">
+                  <p class="center login-form-text">Material Design Admin Template</p>
+                </div>
           </div>
-            <?php echo validation_errors(); ?>
-
             <div class="row margin">
-            <div class="input-field col s12">
-              <i class="material-icons prefix pt-5">person_outline</i>
-              <input id="username" type="text" name="username">
-              <label for="username" class="center-align">Username</label>
+                <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('error')); ?></p>
+                <div class="input-field col s12">
+                <i class="material-icons prefix pt-5">person_outline</i>
+              <input id="email" type="text" name="email" required="1">
+              <label for="email" class="center-align">Username</label>
             </div>
           </div>
           <div class="row margin">
             <div class="input-field col s12">
               <i class="material-icons prefix pt-5">lock_outline</i>
-              <input id="password" type="password" name="password">
+              <input id="password" type="password" name="password" required="1">
               <label for="password">Password</label>
             </div>
           </div>
@@ -52,6 +51,5 @@
             </div>
           </div>
         </form>
-      </div>
     </div>
 <?php $this->load->view('admin/components/page_tail'); ?>

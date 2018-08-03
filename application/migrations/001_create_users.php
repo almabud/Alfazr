@@ -10,6 +10,10 @@ class Migration_Create_users extends CI_Migration {
 				'unsigned' => TRUE,
 				'auto_increment' => TRUE
 			),
+            'email' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ),
 			'password' => array(
 				'type' => 'VARCHAR',
 				'constraint' => '128',
@@ -21,6 +25,6 @@ class Migration_Create_users extends CI_Migration {
 
 	public function down()
 	{
-		$this->dbforge->drop_table('users');
+		$this->dbforge->drop_table('users_log');
 	}
 }
