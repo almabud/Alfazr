@@ -42,7 +42,7 @@
                     <div class="collapsible-body">
                         <ul>
                             <li>
-                                <a href="user-profile-page.html">
+                                <a href="<?php echo site_url('admin/dashboard/profile'); ?>">
                                     <i class="material-icons">keyboard_arrow_right</i>
                                     <span>User Profile</span>
                                 </a>

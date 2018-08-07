@@ -18,9 +18,8 @@ class MY_Model extends CI_Model {
             $filter = $this->_primary_filter;
             $id = $filter($id);
             $this->db->where($this->_primary_key, $id);
-            $method = 'row';
         }
-        elseif($single == TRUE) {
+        if($single == TRUE) {
             $method = 'row';
         }
         else {
@@ -38,7 +37,7 @@ class MY_Model extends CI_Model {
         return $this->get(NULL, 'TRUE');
     }
 
-    public function save($data, $id = NULL){
+    public function save($data=array(), $id = NULL){
 
         // Set timestamps
         if ($this->_timestamps == TRUE) {
