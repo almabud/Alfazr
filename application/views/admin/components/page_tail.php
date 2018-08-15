@@ -1,4 +1,7 @@
-<?php if(uri_string()!='admin/user/login') { ?>
+<?php
+$check_uri=rtrim('admin/user/activate/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
+$check_uri2=rtrim('admin/user/re_send_email/'.$this->uri->segment(4),'/');
+if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && uri_string()!=$check_uri2 && uri_string()!=$check_uri) { ?>
 <!-- START FOOTER -->
 <footer class="page-footer gradient-45deg-purple-deep-orange">
     <div class="footer-copyright">
@@ -18,7 +21,7 @@
     <!-- jQuery Library -->
     <script type="text/javascript" src="<?php echo site_url('vendors/jquery-3.2.1.min.js'); ?>"></script>
     <!--angularjs-->
-    <script type="text/javascript" src="../../vendors/angular.min.js"></script>
+    <script type="text/javascript" src="<?php echo site_url('vendors/angular.min.js'); ?>"></script>
     <!--materialize js-->
     <script type="text/javascript" src="<?php echo site_url('js/materialize.min.js'); ?>"></script>
     <!--prism-->
@@ -34,7 +37,13 @@
     <!--form-file-uploads.js - Page Specific JS codes-->
     <script type="text/javascript" src="<?php echo site_url('js/scripts/form-file-uploads.js'); ?>"></script>
     <!--custom-script.js - Add your own theme custom JS-->
-    <script type="text/javascript" src="<?php echo site_url('js/my-script.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('js/custom.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo site_url('js/scripts/dashboard-ecommerce.js'); ?>"></script>
+    <!-- date picker -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+  <script>
+      
+      </script>
     </body>
     </html>

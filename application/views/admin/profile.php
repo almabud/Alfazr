@@ -17,31 +17,25 @@
                     <!-- profile-page-header -->
                     <div id="profile-page-header" class="card">
                         <?php
-                          $cover_photo='../../images/gallary/23.png';
-                          $profile_photo='../../images/avatar/avatar-7.png';
-                          foreach ($photos as $key=>$value)
-                          {
-                              if($value->activity=='active')
-                              {
-                                  if($value->file_type=='cover_photo')
-                                          $cover_photo='../../images/user_photo/'.$value->img;
-                                  else
-                                      $profile_photo='../../images/user_photo/'.$value->img;
-                              }
-                          }
+                          $cover_photo_d=base_url().'images/gallary/23.png';
+                          $profile_photo_d=base_url().'images/avatar/avatar-7.png';
+                                  if($cover_photo != '')
+                                          $cover_photo_d=base_url().'images/user_photo/'.$cover_photo;
+                                  if($profile_photo !='')
+                                      $profile_photo_d=base_url().'images/user_photo/'.$profile_photo;
 
                         ?>
                         <div class="card-image waves-effect waves-block waves-light" >
                             <div id="dom-target" style="display: none;">
                                 <?php echo htmlspecialchars($cover_photo); ?>
                             </div>
-                            <img class="responsive-img activator" src="<?php echo $cover_photo; ?>" id="preview_cover_photo"  alt="">
+                            <img class="responsive-img activator" src="<?php echo $cover_photo_d; ?>" id="preview_cover_photo"  alt="">
                         </div>
                         <figure class="card-profile-image">
                             <div id="profile_photo_data" style="display: none;">
                                 <?php echo htmlspecialchars($profile_photo); ?>
                             </div>
-                            <img src="<?php echo $profile_photo; ?>" id="preview_profile_photo" alt="" class="circle profile_photo z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
+                            <img src="<?php echo $profile_photo_d; ?>" id="preview_profile_photo" alt="" class="circle profile_photo z-depth-2 responsive-img activator gradient-45deg-light-blue-cyan gradient-shadow">
                         </figure>
                         <div class="card-content">
                             <div class="row pt-2">
@@ -62,10 +56,10 @@
                       <i class="material-icons right">close</i>
                     </span>
                                 <span>
-                      <i class="material-icons cyan-text text-darken-2">accessibility</i> <?php echo $role; ?></span>
+                      <i class="material-icons cyan-text text-darken-2">accessibility</i> <?php echo $this->session->userdata('role'); ?></span>
                             </p>
                             <p>
-                                <i class="material-icons cyan-text text-darken-2">perm_phone_msg</i> +1 (612) 222 8989</p>
+                                <i class="material-icons cyan-text text-darken-2">perm_phone_msg</i> <?php echo $contact_no; ?></p>
                             <p>
                                 <i class="material-icons cyan-text text-darken-2">email</i> <?php echo $this->session->userdata('email'); ?></p>
                             <p>
@@ -104,25 +98,13 @@
                                         </li>
                                     </ul>
                                         <!--Edit profile-->
-                                    <div id="edit_profile_msg" class="row hide">
-                                      <div class="col s12">
-                                        <div id="" class="card  gradient-45deg-purple-amber">
-                                            <div class="card-profile-title">
-                                                <div class="row margin">
-                                                    <div class="tab-content center-align white-text col s12" id="edit_profile">
-                                                        Profile Editor mood is on
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                   
                                     <!-- Add photos-->
                                     <!--<div id="AddPhotos" class="tab-content col s12  grey lighten-4">
 
                                     </div>-->
 
-                                    <div id="add_photos" class="row">
+                                    <div id="add_photos" class="row hide">
                                         <div class="col s12">
                                             <div class="card">
                                                 <div class="card-profile-title">
@@ -134,7 +116,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col s12">
-                                                            <form action="add_photos/<?php echo $this->data['id']; ?>" method="post" enctype="multipart/form-data">
+                                                            <form action="add_photos/<?php echo $this->session->userdata('id'); ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="row margin">
                                                                     <div id="file-upload" class="section">
                                                                         <div class="row section">
@@ -190,16 +172,16 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <form action="update_profile_c/<?php echo $this->data['id']; ?>" class="" method="post">
+                                                    <form action="update_profile_c/<?php echo $this->session->userdata('id'); ?>" class="" method="post">
                                                         <div class="row margin">
                                                             <div class="input-field col s12">
-                                                                <input id="f_name" type="text" name="f_name" value="<?php echo $f_name; ?>" readonly>
+                                                                <input id="f_name" type="text" name="f_name" value="<?php echo $F_name; ?>" readonly>
                                                                 <label for="f_name" class="center-align">First Name</label>
                                                             </div>
                                                         </div>
                                                         <div class="row margin">
                                                             <div class="input-field col s12">
-                                                                <input id="l_name" type="text" name="l_name" value="<?php echo $l_name; ?>" readonly>
+                                                                <input id="l_name" type="text" name="l_name" value="<?php echo $L_name; ?>" readonly>
                                                                 <label for="l_name" class="center-align">Last Name</label>
                                                             </div>
                                                         </div>
@@ -211,22 +193,36 @@
                                                         </div>
                                                         <div class="row margin">
                                                             <div class="input-field col s12">
-                                                                <input id="contact_no" type="text" name="contact_no" readonly>
+                                                                <input id="contact_no" type="text" name="contact_no" value="<?php echo $contact_no; ?>" readonly>
                                                                 <label for="contact_no" class="center-align">Contact No</label>
                                                             </div>
                                                         </div>
-                                                        <div class="row margin">
+                                                         <div class="row margin">
                                                             <div class="input-field col s12">
-                                                                <input id="d_birth" type="text" name="d_birth" value="<?php echo nice_date($d_birth,'d/m/Y'); ?>" readonly>
+                                                                <input type="text" name="d_birth" class="d_of_birth black-text text-black" value="<?php echo  $d_birth; ?>" style="border-style:solid !important; border-width: 0px 0px 1px 0px; !important;" readonly>
                                                                 <label for="d_birth" class="center-align">Date of birth</label>
                                                             </div>
                                                         </div>
                                                         <div class="row margin">
-                                                            <div class="input-field col s12">
-                                                                <input id="gender" type="text" name="gender" value="<?php echo $gender; ?>" readonly>
-                                                                <label for="gender" class="center-align">Gender</label>
+                                                            <div class="input-field col s12 margin">
+                                                                    <select name='gender'>
+                                                                    <?php 
+                                                                       if($gender !='')
+                                                                       {
+                                                                    ?>
+                                                                    <option value="" disabled selected><?php echo $gender; ?></option>
+                                                                       <?php }
+                                                                       else {
+                                                                       ?>
+                                                                        <option value="" disabled selected>Choose your gender</option>
+                                                                        <option value="Male">Male</option>
+                                                                        <option value="Female">Female</option>
+                                                                       <?php } ?>
+                                                                    </select>
+                                                                    <label>Gender</label>
                                                             </div>
                                                         </div>
+                                                        
                                                         <div class="row margin">
                                                             <div class="input-field col s12 margin">
                                                                 <input id="country" type="text" name="country" value="<?php echo $country; ?>" readonly>
@@ -235,7 +231,7 @@
                                                         </div>
                                                         <div class="row margin">
                                                             <div class="input-field col s12 margin">
-                                                                <textarea id="address" class="materialize-textarea" name="address" readonly> <?php echo $address; ?> </textarea>
+                                                                <textarea id="address" class="materialize-textarea" name="address" readonly> <?php echo $Address; ?> </textarea>
                                                                 <label for="address">Address</label>
                                                             </div>
                                                         </div>

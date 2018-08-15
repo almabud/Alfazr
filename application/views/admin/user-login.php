@@ -1,11 +1,4 @@
 <?php $this->load->view('admin/components/page_head'); ?>
-<body class="cyan">
-    <!-- Start Page Loading -->
-    <div id="loader-wrapper">
-      <div id="loader"></div>
-      <div class="loader-section section-left"></div>
-      <div class="loader-section section-right"></div>
-    </div>
     <!-- End Page Loading -->
     <div id="login-page" class="row">
       <div class="col s12 z-depth-4 card-panel">

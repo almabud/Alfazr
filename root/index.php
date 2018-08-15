@@ -56,7 +56,7 @@
  //$root = dirname(__FILE__);
  //var_dump($root);
  switch (dirname(__FILE__)){
-    case 'C:\xampp\htdocs\projects\test\root':
+    case 'http://localhost/alfazr/root':
         define('ENVIRONMENT','development');
         break;
     default:

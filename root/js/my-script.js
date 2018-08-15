@@ -2,15 +2,21 @@
 /* In profile page Edit profile functionality */
 $(document).ready(function() {
     var data;
-    $('#edit_profile').click(function () {
-        $('#edit_profile_msg').removeClass("hide");
-        $('#submit').removeClass("hide");
-        $('#f_name').removeAttr("readonly");
-        $('#l_name').removeAttr("readonly");
-        $('#contact_no').removeAttr("readonly");
-        $('#country').removeAttr("readonly");
-        $('#address').removeAttr("readonly");
-    });
+    // $('#edit_profile').click(function () {
+    //     $('#edit_profile_msg').removeClass("hide");
+    //     $('#submit').removeClass("hide");
+    //     $('#f_name').removeAttr("readonly");
+    //     $('#l_name').removeAttr("readonly");
+    //     $('#contact_no').removeAttr("readonly");
+    //     $('#country').removeAttr("readonly");
+    //     $('#address').removeAttr("readonly");
+       
+    //     // if($('#gender').val()==null)
+    //     //   $('#gender').removeAttr("readonly");
+    //     // if($('.datepicker').val()==null)
+    //     //          $('.datepicker').datepicker();
+    // });
+    console.log("hello");
     preview_cp();
     preview_p();
 

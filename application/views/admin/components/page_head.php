@@ -38,15 +38,24 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <!--dropify-->
     <link href="<?php echo site_url('vendors/dropify/css/dropify.min.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
+    <!-- date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
-<?php if(uri_string()!='admin/user/login') { ?>
-<body>
+<?php
+$body_color=null;
+$check_uri=rtrim('admin/user/activate/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
+$check_uri2=rtrim('admin/user/re_send_email/'.$this->uri->segment(4),'/');
+if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || uri_string()==$check_uri ||uri_string()==$check_uri2)
+    $body_color='cyan';
+?>
+<body class="<?php echo $body_color; ?>">
 <!-- Start Page Loading -->
 <div id="loader-wrapper">
     <div id="loader"></div>
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
 </div>
+<?php if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && uri_string()!=$check_uri && uri_string()!=$check_uri2) { ?>
 <!-- End Page Loading -->
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <!-- START HEADER -->
@@ -82,11 +91,8 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
                             <span class="avatar-status avatar-online nav_bar_profile_photo">
                                <?php
                                 $pro_photo=site_url('images/avatar/avatar-7.png');
-                               foreach ($photos as $key => $value)
-                               {
-                                   if($value->file_type=='profile_photo')
-                                       $pro_photo=site_url('images/user_photo/').$value->img;
-                               }
+                                 if($this->data['profile_photo']!='')
+                                    $pro_photo=site_url('images/user_photo/').$this->data['profile_photo'];
                                ?>
 
                             <img src="<?php echo $pro_photo; ?>"  alt="">
