@@ -32,18 +32,29 @@ if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && ur
     <script type="text/javascript" src="<?php echo site_url('vendors/dropify/js/dropify.min.js'); ?>"></script>
     <!-- chartjs -->
     <script type="text/javascript" src="<?php echo site_url('vendors/chartjs/chart.min.js'); ?>"></script>
-    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
-    <script type="text/javascript" src="<?php echo site_url('js/plugins.js'); ?>"></script>
     <!--form-file-uploads.js - Page Specific JS codes-->
     <script type="text/javascript" src="<?php echo site_url('js/scripts/form-file-uploads.js'); ?>"></script>
-    <!--custom-script.js - Add your own theme custom JS-->
-    <script type="text/javascript" src="<?php echo site_url('js/custom.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo site_url('js/scripts/dashboard-ecommerce.js'); ?>"></script>
     <!-- date picker -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- data-tables --> 
+    <script type="text/javascript" src="<?php echo site_url('vendors/data-tables/js/jquery.dataTables.min.js'); ?>"></script>
+    <!--data-tables.js - Page Specific JS codes -->
+    <script type="text/javascript" src="<?php echo site_url('vendors/sweetalert/dist/sweetalert.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('js/scripts/extra-components-sweetalert.js'); ?>"></script>
+
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="<?php echo site_url('js/custom.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo site_url('js/hotel_ajax.js'); ?>"></script>
+        <!-- <script type="text/javascript" src="<?php echo site_url('js/scripts/test.js'); ?>"></script> -->
+
+    <script type="text/javascript" src="<?php echo site_url('js/plugins.js'); ?>"></script>
+
+
 
   <script>
-      
-      </script>
+    
+ </script>
     </body>
     </html>

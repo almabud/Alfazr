@@ -21,7 +21,7 @@ class Dashboard extends Admin_Controller {
     public  function  add_photos()
     {
         $path = realpath(".");
-         $path .= "/images/user_photo"; 
+        $path .= "/images/user_photo"; 
         $config['upload_path'] =$path;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 2048;

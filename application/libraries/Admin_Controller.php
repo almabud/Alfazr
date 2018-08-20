@@ -41,6 +41,7 @@ class Admin_Controller extends MY_Controller
             if ( ! $this->upload->do_upload($input_name))
             {
                 $error = array('error' => $this->upload->display_errors());
+               // var_dump($input_name);
                     $this->session->set_flashdata('error', $error);
                    // echo $this->upload->display_errors();
             }

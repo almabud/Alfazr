@@ -84,7 +84,6 @@ class User extends Admin_Controller
             }
                 //sending email
         }
-        else
          $this->load->view('admin/user-register');
     }
     public  function activate()

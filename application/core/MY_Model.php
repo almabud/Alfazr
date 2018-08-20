@@ -5,6 +5,7 @@ class MY_Model extends CI_Model {
     protected $_primary_key = 'id';
     protected $_primary_filter = 'intval';
     protected $_order_by = '';
+    protected $_order_by_what='id';
     public $rules = array();
     protected $_timestamps = FALSE;
 
@@ -26,9 +27,9 @@ class MY_Model extends CI_Model {
             $method = 'result';
         }
 
-       /* if (!count($this->db->ar_orderby)) {
-            $this->db->order_by($this->_order_by);
-        }*/
+        if($this->_order_by!='') {
+            $this->db->order_by($this->_order_by_what, $this->_order_by);
+        }
         return $this->db->get($this->_table_name)->$method();
     }
 
@@ -80,5 +81,6 @@ class MY_Model extends CI_Model {
         $this->db->where($this->_primary_key, $id);
         $this->db->limit(1);
         $this->db->delete($this->_table_name);
+        return TRUE;
     }
 }

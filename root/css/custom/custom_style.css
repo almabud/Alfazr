@@ -1,0 +1,61 @@
+#add_photos .profile-small {
+    height: 250px;
+    overflow: hidden;
+}
+
+#add_photos .profile-medium {
+    height: 350px;
+    overflow: hidden;
+}
+
+#add_photos .profile-large {
+    height: 450px;
+    overflow: hidden;
+}
+
+#add_photos .card-profile-title {
+    font-size: 16px;
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
+#add_photos .card-action-share {
+    padding: 16px;
+}
+.dd {
+    display: block !important;
+    margin-top: 0em !important;
+}
+.dropify-message p {
+    margin: 5px 0 0 0px !important;
+    text-align:center !important;
+}
+.nav_bar_profile_photo{
+    width: 25px !important;
+
+}
+.nav_bar_profile_photo img{
+    border-radius: 50% !important;
+    height: 25px !important;
+}
+.profile_photo{
+    width:95px !important;
+    height: 100px !important;
+}
+#preview_cover_photo{
+    overflow: hidden;
+    height: 100% !important;
+}
+.d_of_birth{
+    border-style:solid !important;
+}
+.modal-header{
+    padding:20px 0px 0px 10px !important;
+}
+td {
+    word-wrap: break-word;
+}
+table { 
+table-layout: fixed;
+width: 100%
+}

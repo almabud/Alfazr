@@ -49,3 +49,13 @@
 .d_of_birth{
     border-style:solid !important;
 }
+.modal-header{
+    margin:20px 0px 0px 10px !important;
+}
+td {
+    word-wrap: break-word;
+}
+table { 
+table-layout: fixed;
+width: 100%
+}

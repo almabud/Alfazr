@@ -50,6 +50,23 @@
                         </ul>
                     </div>
                 </li>
+
+                <li class="bold">
+                    <a class="collapsible-header  waves-effect waves-cyan">
+                        <i class="material-icons">hotel</i>
+                        <span class="nav-text">Hotels</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="<?php echo site_url('admin/hotels'); ?>">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>Hotel list</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </li>
         <li>
