@@ -21,35 +21,49 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <!-- For iPhone -->
     <meta name="msapplication-TileColor" content="#00bcd4">
     <meta name="msapplication-TileImage" content="<?php echo site_url('images/favicon/mstile-144x144.png'); ?>">
+
     <!-- For Windows Phone -->
     <!-- CORE CSS-->
     <link href="<?php echo site_url('css/themes/collapsible-menu/materialize.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('css/themes/collapsible-menu/style.css'); ?>" type="text/css" rel="stylesheet">
-    <?php if(site_url()!='admin/dashboard/profile' && uri_string()!= 'admin/hotels'){ ?>
+    <?php if(site_url()!='admin/dashboard/profile' && uri_string()!= 'admin/hotels' && uri_string()!= 'admin/rooms'){ ?>
     <link href="<?php echo site_url('css/layouts/page-center.css'); ?>" type="text/css" rel="stylesheet">
     <?php } ?>
+    
    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
-   <link href="<?php echo site_url('vendors/prism/prism.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/prism/prism.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/perfect-scrollbar/perfect-scrollbar.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/magnific-popup/magnific-popup.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('vendors/jvectormap/jquery-jvectormap.css'); ?>" type="text/css" rel="stylesheet">
-   <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/jquery.nestable/nestable.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--dropify-->
     <link href="<?php echo site_url('vendors/dropify/css/dropify.min.css'); ?>" type="text/css" rel="stylesheet">
-    <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
     <!-- date picker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- data table -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
     <link href="<?php echo site_url('vendors/sweetalert/dist/sweetalert.css'); ?>" type="text/css" rel="stylesheet">
+    <?php if(uri_string()=='admin/hotels') { ?>
+    <link href="<?php echo site_url('css/custom/pekeupload.css'); ?>" type="text/css" rel="stylesheet">
+    <?php } ?>
+
+
+    <!-- Froala edito --->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+ 
+    <link href="<?php echo site_url('vendors/froala/css/froala_editor.pkgd.css'); ?>" type="text/css" rel="stylesheet">
     <!-- Custome CSS-->
     <link href="<?php echo site_url('css/custom/custom_style.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('css/custom/preloader.css'); ?>" type="text/css" rel="stylesheet">
 
 
   </head>
 <?php
 $body_color=null;
-$check_uri=rtrim('admin/user/activate/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
+$check_uri=rtrim('admin/user/login/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
 $check_uri2=rtrim('admin/user/re_send_email/'.$this->uri->segment(4),'/');
 if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || uri_string()==$check_uri ||uri_string()==$check_uri2)
     $body_color='cyan';

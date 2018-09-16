@@ -2,20 +2,18 @@
     <!-- End Page Loading -->
     <div id="login-page" class="row">
         <div class="col s12 z-depth-4 card-panel">
+            <div class="row">
+                <div class="col s12">
+                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('not_active_error')); ?></p>
+                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('already_active_error')); ?></p>
+                </div>
+            </div>
             <form class="login-form" action="re_send_email" method="post">
                 <div class="row">
                     <div class="input-field col s12 center">
                         <h4>Register</h4>
                         <p class="center">Join to our community now !</p>
                     </div>
-                </div>
-                <div class="row margin">
-                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('not_active_error')); ?></p>
-                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('already_active_error')); ?></p>
-                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('active_error')); ?></p>
-                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('registered_error')); ?></p>
-                    <p class="col s12 center-align red-text text-accent-4"><?php print_r($this->session->flashdata('error')); ?></p>
-                    <p class="col s12 center-align green-text text-accent-4"><?php print_r($this->session->flashdata('success')); ?></p>
                 </div>
                 <div class="row margin">
                  <?php  if((($this->session->flashdata('success'))==NULL && ($this->session->flashdata('already_active_error'))==NULL) || ($this->session->flashdata('not_active_error'))!=NULL ){ ?>

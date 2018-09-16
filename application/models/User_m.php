@@ -40,15 +40,15 @@ class User_m extends MY_Model
                     'role' => $user->role
                 );
                 $this->session->set_userdata($data);
+               // $result['success']='admin/dashboard';
             }
             else
-            {
-                $this->session->set_flashdata('error', 'Your account need to be activated.');
-                return 'activate_needed';
-            }
+             $result['error']='Your account has\'t activate yet.</br>
+             <a href="#resend_mail_modal" class="modal-trigger" style="color: red !important;"> haven\'t recieved activation mail?</a>';
 		}
-		else
-            $this->session->set_flashdata('error', 'Invalid Email or Password');
+        else
+         $result['error']='Invalid Email or Password';
+         return $result;
 	}
 
 	public function logout ()
@@ -66,19 +66,16 @@ class User_m extends MY_Model
 	}
 	public  function register_m($code)
     {
-         $result=FALSE;
          $this->_primary_key='email';
          $email=$this->input->post('email');
-
          $user=(array)$this->get($email,TRUE);
-        // var_dump($user);
          $this->_primary_key='id';
        if(count((array) $user))
         {
             if ($user['status']!='active')
-                $this->session->set_flashdata('active_error', 'This account isn\'t verified yet.');
+               $result['error']['active']='This acount isn\'t activate yet.' ;
             else
-                 $this->session->set_flashdata('registered_error', 'This email is already registered');
+               $result['error']['register'] ='An account is already registered.';
         }
         else
         {
@@ -99,43 +96,42 @@ class User_m extends MY_Model
                 'verify'=>$code,
                 'contact_no'=>''
             );
-            if(!$result = $this->save($data))
-            {
-                $this->session->set_flashdata('error', 'Failed to create account.');
-            }
+            if(!$id=$this->save($data))
+             $result['error']['error']='Technical problem.';
             else
-            $this->session->set_flashdata('success', 'Your account has been created. Please check your email.');
-            return $result;
+             return $id;
         }
+         return $result;
     }
    public function activate_m()
    {
+       
        $code=$this->uri->segment(5);
-       $user=(array)$this->get($this->uri->segment(4),TRUE);
+       $this->_primary_key='email';
+       $email=$this->uri->segment(4);
+       $email=urldecode($email);
+       $user=(array)$this->get($email,TRUE);
+       $this->_primary_key='id';
        if(count((array) $user))
        {
+          
            if($user['status']!='active' && $user['verify']== $code)
            {
                $data=array(
                    'status'=>'active',
                    'verify'=>''
                );
-               if($this->save($data,$this->uri->segment(4)))
-               {
-                   $this->session->set_flashdata('success', 'Your Account is Activated.');
-                   return TRUE;
-               }
+               if($this->save($data,$user['id']))
+                   $result['success']='Your account is Activated';
                else
-               $this->session->set_flashdata('not_active_error', 'Your Account cant\'t be activated.');
+               $result['error']='Technical problem.';
            }
-           else if ($user['status'] == 'active')
-           {
-               echo $user['status'];
-               $this->session->set_flashdata('already_active_error', 'Your Account already active.');
-           }
-           
+           else
+               $result['error']='Invalid activation link';
        }
-       return FALSE;
+       else
+       $result['error']='Invalid activation link';
+       return $result;
 
    }
    public function re_send_email_m($code)
@@ -145,18 +141,17 @@ class User_m extends MY_Model
        $user=(array)$this->get($email,TRUE);
        $this->_primary_key='id';
        $data=array(
-           'status'=>$code
+           'verify'=>$code
        );
-       $id=NULL;
        if(count((array) $user))
        {
            if($user['status']!='active')
            {
                if($this->save($data,$user['id']))
-                   $id = $user['id'];
+                  return true;
            }
        }
-       return $id;
+       return false;
    }
 
 	public function hash ($string)

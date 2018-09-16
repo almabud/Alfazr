@@ -64,6 +64,12 @@
                                     <span>Hotel list</span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="<?php echo site_url('admin/rooms'); ?>">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>Room list</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

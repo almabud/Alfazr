@@ -205,21 +205,21 @@
                                                         </div>
                                                         <div class="row margin">
                                                             <div class="input-field col s12 margin">
-                                                                    <select name='gender'>
-                                                                    <?php 
-                                                                       if($gender !='')
-                                                                       {
+                                                                <select name='gender'>
+                                                                <?php 
+                                                                    if($gender !='')
+                                                                    {
+                                                                ?>
+                                                                <option value="" disabled selected><?php echo $gender; ?></option>
+                                                                    <?php }
+                                                                    else {
                                                                     ?>
-                                                                    <option value="" disabled selected><?php echo $gender; ?></option>
-                                                                       <?php }
-                                                                       else {
-                                                                       ?>
-                                                                        <option value="" disabled selected>Choose your gender</option>
-                                                                        <option value="Male">Male</option>
-                                                                        <option value="Female">Female</option>
-                                                                       <?php } ?>
-                                                                    </select>
-                                                                    <label>Gender</label>
+                                                                    <option value="" disabled selected>Choose your gender</option>
+                                                                    <option value="Male">Male</option>
+                                                                    <option value="Female">Female</option>
+                                                                    <?php } ?>
+                                                                </select>
+                                                                <label>Gender</label>
                                                             </div>
                                                         </div>
                                                         

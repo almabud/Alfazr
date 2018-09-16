@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <!--================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 4.0
+	Author: PIXINVENT
+	Author URL: https://themeforest.net/user/pixinvent/portfolio
+================================================================================ -->
+  <head>
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+    <title>Materialize - Material Design Admin Template</title>
+    <!-- Favicons-->
+    <link rel="icon" href="<?php echo site_url('images/favicon/favicon-32x32.png'); ?>" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="<?php echo site_url('images/favicon/apple-touch-icon-152x152.png'); ?>">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="<?php echo site_url('images/favicon/mstile-144x144.png'); ?>">
+
+    <!-- For Windows Phone -->
+    <!-- CORE CSS-->
+    <link href="<?php echo site_url('css/themes/collapsible-menu/materialize.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('css/themes/collapsible-menu/style.css'); ?>" type="text/css" rel="stylesheet">
+    <?php if(site_url()!='admin/dashboard/profile' && uri_string()!= 'admin/hotels' && uri_string()!= 'admin/hotels/room_list'){ ?>
+    <link href="<?php echo site_url('css/layouts/page-center.css'); ?>" type="text/css" rel="stylesheet">
+    <?php } ?>
+    
+    <!-- <link href="<?php //echo site_url('vendors/perfect-scrollbar/perfect-scrollbar.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php //echo sit_url('vendors/magnific-popup/magnific-popup.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php //echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
+    -->
+
+
+    <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+    <link href="<?php echo site_url('vendors/prism/prism.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/perfect-scrollbar/perfect-scrollbar.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/magnific-popup/magnific-popup.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/jvectormap/jquery-jvectormap.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('vendors/flag-icon/css/flag-icon.min.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    </head>
+  <body>
+
+
+ <!--start edit modal -->
+ <div id="edit_modal" class="modal">
+        <div class="modal-header  grey lighten-4">
+           <div class="row margin">
+             <div class="col s12">
+               <h4> Edit <span style="font-size:18px">Hotel</span></h4>
+             </div>
+           </div>
+           <div class="divider"></div>
+         </div>
+         <div class="modal-content">
+           <form id="edit_room" method="post" action="edit_room" enctype="multipart/form-data">
+           <div class="row margin">
+                   <div class="input-field col s12 margin">
+                       <select name='select_hotel' id="select_hotel">
+                           <option  value="" disabled selected>Select Hotel</option>
+                           <?php foreach($hotel_information as $value)
+                               {
+                                   echo '<option value='.$value->id.'>'.$value->name.'</option>';
+                               }
+                               ?>
+                       </select>
+                           <label>Hotel</label>
+                   </div>
+               </div>
+
+               <div class="row margin">
+                 <div class="input-field col s12">
+                   <input id="room_no" type="text" name="room_no">
+                   <label for="room_no">Room No</label>
+                   <div style="margin-top:-15px;margin-left:-9px" class="col s12 red-text text-accent-4" id="error"></div>
+                 </div>
+               </div>
+               <div class="row margin">
+                 <div class="input-field col s12">
+                   <input id="floor" type="text" name="floor">
+                   <label for="floor">Floor</label>
+                 </div>
+               </div>
+               <div class="row margin">
+                 <div class="col s12">
+                   <textarea id="about" name="about" row="50" value="hello"></textarea>
+                 </div>
+               </div>
+               <div class="divider"></div>
+               <!-- <div class="row margin"> -->
+                 <!-- <div class="col s12"> -->
+
+
+
+
+
+                <div class="masonry-gallery-wrapper">
+                   <div class="popup-gallery">
+                     <div class="gallary-sizer"></div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/1.png" title="The Cleaner">
+                         <img src="../../images/gallary/1.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/2.png" title="Winter Dance">
+                         <img src="../../images/gallary/2.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/3.png" title="The Uninvited Guest">
+                         <img src="../../images/gallary/3.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/4.png" title="Oh no, not again!">
+                         <img src="../../images/gallary/4.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/5.png" title="Swan Lake">
+                         <img src="../../images/gallary/5.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/6.png" title="The Shake">
+                         <img src="../../images/gallary/6.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/7.png" title="Who's that, mommy?">
+                         <img src="../../images/gallary/7.png">
+                       </a>
+                     </div>
+                     <div class="gallary-item">
+                       <a href="../../images/gallary/8.png" title="Who's that, mommy?">
+                         <img src="../../images/gallary/8.png">
+                       </a>
+                     </div>
+                   <!-- </div> -->
+                 <!-- </div> -->
+
+
+
+
+
+
+
+
+                 </div>
+               </div>
+               <div class="row margin">
+                 <div id="file-upload" class="section">
+                     <div class="row section">
+                         <div class="col s12">
+                             <input type="file" multiple="multiple" name="files[]" id="photo" />
+                         </div>
+                     </div>
+                 </div>
+              </div>
+              <div class="row">
+                 <div class="input-field col m3 s4 right">
+                     <input type="submit" id="ar_submit" class="btn waves-effect waves-light col s12" value="Add">
+                 </div>
+               </div>
+             </div>
+            </form>
+         </div>
+        </div>
+       </div>
+       <!-- edit modal end -->

@@ -19,11 +19,7 @@ class Migration_Create_hotel extends CI_Migration {
             ),
             'about' => array(
                 'type' => 'TEXT'
-            ),
-			'hotel_photo' => array(
-                'type' => 'VARCHAR',
-                'constraint' => '255',
-			)
+            )
 		));
 		$this->dbforge->add_key('id');
 		$this->dbforge->create_table('hotels');

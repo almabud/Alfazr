@@ -48,12 +48,12 @@ class MY_Model extends CI_Model {
             else
                 $data['modified'] = $now;
         }
-
         // Insert
         if ($id === NULL) {
             !isset($data[$this->_primary_key]) || $data[$this->_primary_key] = NULL;
             $this->db->set($data);
             $this->db->insert($this->_table_name);
+            //var_dump($this->_table_name);
             $id = $this->db->insert_id();
             // $error = $this->db->error();
             // var_dump($error);
@@ -67,7 +67,6 @@ class MY_Model extends CI_Model {
             $this->db->update($this->_table_name,$data);
           // var_dump($data);
         }
-
         return $id;
     }
 

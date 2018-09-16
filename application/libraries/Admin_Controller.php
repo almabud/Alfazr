@@ -13,7 +13,30 @@ class Admin_Controller extends MY_Controller
 		parent::__construct();
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->model('user_m');
+        $this->load->model('user_m');
+        $this->load->helper('email');
+        $config['useragent'] = 'CodeIgniter';
+        $config['protocol'] = 'smtp';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        $config['smtp_user'] = 'chair2180@gmail.com';
+        $config['smtp_pass'] = 'bd464258';
+        $config['smtp_port'] = 465;
+        $config['smtp_timeout'] = 5;
+        $config['wordwrap'] = TRUE;
+        $config['wrapchars'] = 76;
+        $config['mailtype'] = 'html';
+        $config['charset'] = 'utf-8';
+      //  $config['charset'] = 'iso-8859-1';
+        $config['validate'] = TRUE;
+        $config['priority'] = 3;
+        $config['crlf'] = "\r\n";
+        $config['newline'] = "\r\n";
+        $config['bcc_batch_mode'] = FALSE;
+        $config['bcc_batch_size'] = 200;
+        $this->load->library('email', $config);
+        $this->email->set_newline("\r\n");
+        $this->email->from($config['smtp_user']);
 
         $exception_uris = array(
             'admin/user/login',
@@ -43,7 +66,7 @@ class Admin_Controller extends MY_Controller
                 $error = array('error' => $this->upload->display_errors());
                // var_dump($input_name);
                     $this->session->set_flashdata('error', $error);
-                   // echo $this->upload->display_errors();
+                 //  var_dump ($this->upload->display_errors());
             }
 
             else
@@ -53,11 +76,11 @@ class Admin_Controller extends MY_Controller
         return $data;
     }
 
-    public function send_mail($email,$message)
+    public function send_mail()
     {
         $config['useragent'] = 'CodeIgniter';
         $config['protocol'] = 'smtp';
-        //$config['mailpath'] = '/usr/sbin/sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
         $config['smtp_host'] = 'ssl://smtp.googlemail.com';
         $config['smtp_user'] = 'chair2180@gmail.com';
         $config['smtp_pass'] = 'bd464258';
@@ -67,6 +90,7 @@ class Admin_Controller extends MY_Controller
         $config['wrapchars'] = 76;
         $config['mailtype'] = 'html';
         $config['charset'] = 'utf-8';
+      //  $config['charset'] = 'iso-8859-1';
         $config['validate'] = FALSE;
         $config['priority'] = 3;
         $config['crlf'] = "\r\n";
@@ -76,9 +100,12 @@ class Admin_Controller extends MY_Controller
         $this->load->library('email', $config);
         $this->email->set_newline("\r\n");
         $this->email->from($config['smtp_user']);
-        $this->email->to($email);
+        $this->email->to('almabud37@gmail.com');
         $this->email->subject('Signup Verification Email');
-        $this->email->message($message);
+        $this->email->message('');
+        $filename=site_url("images/avatar/avatar-1.png");
+         $this->email->attach(site_url("images/avatar/avatar-1.png"));
+
         if($this->email->send()){
             $this->session->set_flashdata('success','Activation code sent to email');
             return TRUE;

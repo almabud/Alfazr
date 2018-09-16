@@ -10,15 +10,104 @@ class Hotels extends Admin_Controller {
         if(!$this->user_m->loggedin())
             redirect('admin/user/login');
         $this->data= $this->profile_m->get_profile_data();
-        $this->load->view('admin/all_users', $this->data);
+        $this->load->view('admin/hotel_page', $this->data);
     }
     public function get_hotel_data()
     {
-        $data= $this->hotel_m->get_all_hotel_data();
+        $id = $this->input->post('id');
+        if($id != null)
+        {
+            $data= $this->hotel_m->get_all_hotel_data($id,TRUE);
+        }
+        else
+        {
+            $data= $this->hotel_m->get_all_hotel_data();
+        }
         echo json_encode($data);
     }
-    public function add_hotel()
+    public function show_hotel_content()
     {
+        $data = $this->load->view('admin/show_hotels_page');
+        echo json_encode($data);
+    }
+    public function add_hotel_content()
+    {
+        $data = $this->load->view('admin/add_hotel_page');
+        echo json_encode($data);
+    }
+    public function get_hotel_photo()
+    {
+        $id = $this->input->post('id');
+        $data= $this->hotel_m->get_room_photo_dlt($id);
+        echo json_encode($data);
+    }
+    public function edit_hotel()
+    {
+        $path = realpath(".");
+        $path .= "/images/hotels_photo"; 
+        $config['upload_path'] =$path;
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2048;
+        $config['max_width']  = 1920;
+        $config['max_height'] = 1080;
+        $rules=$this->hotel_m->rules;
+        $this->form_validation->set_rules($rules);
+        $id = $this->input->post('id');
+        $dlt_photo_data = json_decode($this->input->post('dlt_photo'), true);
+        if ($this->form_validation->run() == TRUE)
+          {
+            if($id=$this->hotel_m->edit_hotel_m($id))
+            {
+                if(!empty($dlt_photo_data))
+                {
+                     foreach($dlt_photo_data as $key => $value)
+                    {
+                        if($this->hotel_m->dlt_room_photo($value['id']))
+                        {
+                           unlink($path."/".$value['photo_name']);
+                        }
+                    }
+                }
+                if (!empty($_FILES)) 
+                {
+                    $file_count = count($_FILES['files']['name']);
+                    for($i=0; $i<$file_count; $i++)
+                    {
+                        $_FILES['file']['name']     = $_FILES['files']['name'][$i];
+                        $_FILES['file']['type']     = $_FILES['files']['type'][$i];
+                        $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+                        $_FILES['file']['error']     = $_FILES['files']['error'][$i];
+                        $_FILES['file']['size']     = $_FILES['files']['size'][$i];
+                        if($data=($this->do_upload($config,'file'))['file']['file_name'])
+                        {
+                            if(!$this->hotel_m->add_room_photo_m($id,$data))
+                            {
+                                unlink($path."/".$data);
+                            }
+                        }
+                    }
+                }
+            }
+          }
+     echo json_encode("success");
+     }
+     public function dlt_hotel()
+     {
+        $path = realpath(".");
+        $path .= "/images/hotels_photo"; 
+        $id = $this->input->post('id');
+        $room_photo = $this->hotel_m->get_room_photo_dlt($id);
+        if($data = $this->hotel_m->dlt_hotel_m())
+        {
+            foreach($room_photo as $value)
+            {
+                unlink($path.'/'.$value->room_photo);
+            }
+        }
+         echo json_encode($data);
+     }
+    public function add_hotel(){
+        $response=array();
         $path = realpath(".");
         $path .= "/images/hotels_photo"; 
         $config['upload_path'] =$path;
@@ -30,51 +119,67 @@ class Hotels extends Admin_Controller {
         $this->form_validation->set_rules($rules);
         if ($this->form_validation->run() == TRUE)
         {
-            $photo=($this->do_upload($config,'photo'))['photo']['file_name'];
-            $data= $this->hotel_m->add_hotel_m($photo);
-            echo json_encode($data);
+            if (!empty($_FILES)) 
+            {
+                $file_count = count($_FILES['files']['name']);
+                if($id=$this->hotel_m->add_hotel_m())
+                {
+                    for($i=0; $i<$file_count; $i++)
+                    {
+                        $_FILES['file']['name']     = $_FILES['files']['name'][$i];
+                        $_FILES['file']['type']     = $_FILES['files']['type'][$i];
+                        $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+                        $_FILES['file']['error']     = $_FILES['files']['error'][$i];
+                        $_FILES['file']['size']     = $_FILES['files']['size'][$i];
+                        if($data=($this->do_upload($config,'file'))['file']['file_name'])
+                        {
+                        if(!$this->hotel_m->add_room_photo_m($id,$data))
+                            {
+                                unlink($path."/".$data);
+                            }
+                        }
+                    }
+                }
+                else{
+                    //echo json_encode('failed');
+                }
+            }
         }
     }
-    public function edit_hotel()
+    public function get_room_photo()
+    {
+        $id = $this->input->post('id');
+        $room_photo = $this->hotel_m->get_room_photo_dlt(null,$id);
+        echo json_encode($room_photo);
+    }
+    ///Froala image uploader--------------------
+    public function froala_image_upload()
     {
         $path = realpath(".");
-        $path .= "/images/hotels_photo"; 
+        $path .= "/images/froala_image"; 
         $config['upload_path'] =$path;
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 2048;
         $config['max_width']  = 1920;
         $config['max_height'] = 1080;
-        $id = $this->input->post('id');
-        $curr_photo = $this->hotel_m->get_all_hotel_data($id,TRUE)->hotel_photo;
-         $rules=$this->hotel_m->rules;
-         $this->form_validation->set_rules($rules);
-          if ($this->form_validation->run() == TRUE)
-          {
-              
-            if($photo=($this->do_upload($config,'photo'))['photo']['file_name'])
-            {
-                $data=$this->hotel_m->edit_hotel_m($photo,$id);
-                unlink($path.'/'.$curr_photo);
-            }
-            else
-            {
-                $data=$this->hotel_m->edit_hotel_m($curr_photo,$id);
-            }
-        }
-      echo json_encode($data);
-     }
-     public function dlt_hotel()
-     {
+        $photo=($this->do_upload($config,'file'))['file']['file_name'];
+        
+        $response = new StdClass;
+        $response->link = base_url()."images/froala_image/" . $photo;
+        echo stripslashes(json_encode($response));
+
+    }
+    public function froala_image_dlt()
+    {   
         $path = realpath(".");
-        $path .= "/images/hotels_photo"; 
-        $id = $this->input->post('id');
-        $curr_photo = $this->hotel_m->get_all_hotel_data($id,TRUE)->hotel_photo;
-        unlink($path.'/'.$curr_photo);
-        if($data = $this->hotel_m->dlt_hotel_m())
-        {
-            unlink($path.'/'.$curr_photo);
-        }
-         echo json_encode($data);
-     }
+        $path .= "/images/froala_image/"; 
+        $photo_dir= $this->input->post('src');
+        $photo_dir=explode ('/', $photo_dir);
+        if(unlink($path.$photo_dir[7]))
+            echo stripslashes(json_encode($photo_dir));
+
+    }
+
+    //------------------------------------------------------
   
 }
