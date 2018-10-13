@@ -8,10 +8,19 @@ $(document).ready(function(e){
 function show_room_content()
 {
      $.ajax({
-         url: 'rooms/show_room_content',
+         url: 'rooms/roomlist',
          type: 'POST',
          async: false,
          success: function(data){
+              var html = `
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="add_room_btn">
+                          <i class="material-icons hide-on-med-and-up">add</i>
+                          <span class="hide-on-small-onl">Add New</span>
+                        </a>
+                        `;
+             $('.breadcrumbs-title').html('Room List');
+             $('.active2').html('Room List');
+             $('.breadcrumbs-btn').html(html);
              $('.midle-content').html(data);
              show_rooms();
              $('#data-table-simple').dataTable({
@@ -108,9 +117,22 @@ function add_room_content()
         type: "POST",
         success: function(data)
             {
+                var html = `
+                    <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="list_room_btn" onclick="show_room_content()" style="margin: 5px !important;">
+                        <i class="material-icons hide-on-med-and-up">add</i>
+                        <span class="hide-on-small-onl">Room List</span>
+                    </a>
+                    <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="refresh_hotel_btn"  onclick="refresh()" style="margin: 5px !important;">
+                        <i class="material-icons hide-on-med-and-up">add</i>
+                        <span class="hide-on-small-onl">Clear</span>
+                    </a>
+                        `;
+             $('.breadcrumbs-title').html('Add Room');
+             $('.active2').html('Add Room');
+             $('.breadcrumbs-btn').html(html);
                 $('.midle-content').html(data);
                 $('form').attr('id','add_room');
-                $('form').attr('action','rooms/add_room');
+                $('form').attr('action','hotels/rooms/add_room');
                 $('#submit_button').html('<input type="submit" id="ar_submit" class="btn waves-effect waves-light col s12" value="Add">');
                 $('textarea').froalaEditor({
                     charCounterCount: false,
@@ -199,8 +221,17 @@ function edit_room_content(edit_data)
                      dataType: "json",
                      success:function(room_data)
                      {
+                        console.log('room_data');
+                            var html = `
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="list_room_btn" onclick="show_room_content()" style="margin: 5px !important;">
+                            <i class="material-icons hide-on-med-and-up">add</i>
+                            <span class="hide-on-small-onl">Room List</span>
+                        </a>
+                            `;
+                        $('.breadcrumbs-title').html('Edit Room');
+                        $('.active2').html('Edit Room');
+                        $('.breadcrumbs-btn').html(html);
                         $('.midle-content').html(data);
-                        $('.header').html('<h4> Edit <span style="font-size:18px">Room</span></h4>');
                         $('form').attr('id','edit_room');
                         $('form').attr('action','rooms/edit_rooms');
                         $('#submit_button').html('<input type="submit" id="er_submit" class="btn waves-effect waves-light col s12" value="Edit">');
@@ -208,7 +239,7 @@ function edit_room_content(edit_data)
                             charCounterCount: false,
                             emoticonsUseImage: true,
                             height:500,
-                            imageUploadURL: 'hotels/froala_image_upload',
+                            imageUploadURL: 'froala_image_upload',
                             toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertImage', 'insertVideo', 'insertTable', '|', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'html', '|', 'undo', 'redo']
                          });
                          $('select').material_select();
@@ -295,7 +326,7 @@ function dlt_froala_img()
       // Request method.
       method: 'POST',
       // Request URL.
-      url: 'hotels/froala_image_dlt',
+      url: 'froala_image_dlt',
       // Request params.
       data: {
         src: $img.attr('src')
@@ -319,7 +350,7 @@ function refresh()
         charCounterCount: false,
         emoticonsUseImage: true,
         height:300,
-        imageUploadURL: 'hotels/froala_image_upload',
+        imageUploadURL: 'froala_image_upload',
         toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertImage', 'insertVideo', 'insertTable', '|', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'html', '|', 'undo', 'redo']
      });
 

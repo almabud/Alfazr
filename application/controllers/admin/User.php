@@ -17,7 +17,10 @@ class User extends Admin_Controller
     {
         $data='';
         if($this->user_m->loggedin())
-            redirect('admin/dashboard');
+            {
+                redirect('admin/dashboard');
+                $data['success']='admin/dashboard';
+            }
             if(!$this->input->is_ajax_request())
                 $this->load->view('admin/user-login');
             else
@@ -30,7 +33,7 @@ class User extends Admin_Controller
                     if($this->user_m->loggedin())
                         $data['success']='admin/dashboard';
                 }
-                if($this->uri->segment(5)!=null && $this->uri->segment(4) != null)
+                if($this->uri->segment(2)!=null && $this->uri->segment(3) != null)
                  $data=$this->user_m->activate_m();
                 echo json_encode($data);
             }
@@ -38,52 +41,7 @@ class User extends Admin_Controller
     }
     public function logout(){
         $this->user_m->logout();
-        redirect('admin/user/login');
-    }
-    public function test()
-    {
-       // $message = 	$this->load->view('admin/reservation_confermation_email_page');
-       $cid='';
-      //  $cid = $this->email->attachment_cid($filename);
-       /// $message = 	$this->load->view('admin/reservation_confermation_email_page',['cid'=>$cid],true);
-       $this->email->to('almabud37@gmail.com');
-       $this->email->subject('Signup Verification Email');
-       $this->email->message('');
-       $filename=site_url("images/avatar/avatar-1.png");
-        $this->email->attach(site_url("images/avatar/avatar-1.png"));
-
-       if($this->email->send()){
-           $this->session->set_flashdata('success','Activation code sent to email');
-           return TRUE;
-       }
-       else{
-           $this->session->set_flashdata('error', 'Sorry Technical problem');
-           return FALSE;
-           //  $this->email->print_debugger();
-       }
-        
-    }
-    public function test3()
-    {
-        $filename=site_url('images/logo/alfazr.jpg');
-        $this->email->to('almabud37@gmail.com');
-        $this->email->subject('Signup Verification Email');
-        $this->email->attach($filename);
-        $cid = $this->email->attachment_cid($filename);
-        var_dump($cid);
-        $data=array(
-            'cid'=>$cid,
-            'url'=>'facebook.com'
-         );
-        $message= $this->load->view('admin/activation_email',$data, TRUE);
-        $this->email->message($message);
-        if($this->email->send())
-         echo "success";
-    }
-    public function test2()
-    {
-        $this->load->view('admin/activation_email');
-
+        redirect('login');
     }
     public  function register()
     {  if($this->user_m->loggedin())
@@ -123,7 +81,7 @@ class User extends Admin_Controller
                 $filename=site_url('images/logo/alfazr.jpg');
                 $this->email->to($email);
                 $this->email->subject('Signup Verification Email');
-                $active_url= base_url().'admin/user/login/'.urlencode($email).'/'.$code;
+                $active_url= base_url().'login/'.urlencode($email).'/'.$code;
                 $this->email->attach($filename);
                 $cid = $this->email->attachment_cid($filename);
                 $message= $this->load->view('admin/activation_email',['cid'=>$cid, 'url'=>$active_url], TRUE);
@@ -160,7 +118,7 @@ class User extends Admin_Controller
                 $filename=site_url('images/logo/alfazr.jpg');
                 $this->email->to($email);
                 $this->email->subject('Signup Verification Email');
-                $active_url= base_url().'admin/user/login/'.urlencode($email).'/'.$code;
+                $active_url= base_url().'login/'.urlencode($email).'/'.$code;
                 $this->email->attach($filename);
                 $cid = $this->email->attachment_cid($filename);
                 $message= $this->load->view('admin/activation_email',['cid'=>$cid, 'url'=>$active_url], TRUE);

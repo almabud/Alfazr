@@ -67,14 +67,14 @@ class Profile_m extends MY_Model
         $this->_table_name='users_log';
         $this->_primary_key='id';
         $data=array(
-            'F_name'=>$this->input->post('f_name') != null ? $this->input->post('f_name') : '' ,
-            'L_name'=>$this->input->post('l_name') != null ? $this->input->post('l_name') : '',
-            'contact_no'=>$this->input->post('contact_no') != null ? $this->input->post('contact_no') : '',
-            'country'=>$this->input->post('country') != null ? $this->input->post('country') : '',
-            'Address'=>$this->input->post('address') != null ? $this->input->post('address') : '',
-            'gender'=>$this->input->post('gender') != null ? $this->input->post('gender') : '',
-            'd_birth'=>$this->input->post('d_birth') != null ? $this->input->post('d_birth') : '0000-00-00',
-            'contact_no'=>$this->input->post('contact_no') != null ? $this->input->post('contact_no') : ''
+            'F_name'=>$this->input->post('f_name'),
+            'L_name'=>$this->input->post('l_name'),
+            'contact_no'=>$this->input->post('contact_no'),
+            'country'=>$this->input->post('country'),
+            'Address'=>$this->input->post('address'),
+            'gender'=>$this->input->post('gender'),
+            'd_birth'=>$this->input->post('d_birth'),
+            'contact_no'=>$this->input->post('contact_no')
         );
        return  $this->save($data,$this->uri->segment(4));
     }

@@ -34,8 +34,11 @@ class Rooms extends Admin_Controller {
     public function dlt_room()
          {
             $id = $this->input->post('id');
-            $data = $this->room_m->dlt_room_m();
-             echo json_encode($data);
+            $data=array(
+                'status' => 'disable'
+            );
+            
+             echo json_encode($this->room_m->dlt_room_m($data,$id));
          }
     public function add_room_content()
     {
@@ -57,7 +60,8 @@ class Rooms extends Admin_Controller {
                 'offer_agent' => $this->input->post('offer_agent'),
                 'offer_local_cus' => $this->input->post('offer_cus'),
                 'available_rooms' => $this->input->post('total_room'),
-                'about' => $this->input->post('about')
+                'about' => $this->input->post('about'),
+                'status' => 'active'
             );
             if($data=$this->room_m->add_room_m($data))
                 $response["success"]= $data;

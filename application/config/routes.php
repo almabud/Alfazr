@@ -52,3 +52,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+$route['login']='admin/user/login';
+$route['login/(:any)/(:any)']='admin/user/login';
+$route['register']='admin/user/register';
+$route['do_register']='admin/user/do_register';
+$route['re_send_email']='admin/user/re_send_email';
+$route['logout']='admin/user/logout';
+$route['user/profile']='admin/dashboard/profile';
+$route['user/profile/update/(:num)']='admin/dashboard/update_profile_c/$1';
+$route['user/profile/update/photo/(:num)']='admin/dashboard/add_photos/$1';
+$route['admin/hotels/rooms']='admin/rooms';
+$route['admin/hotels/rooms/get_room_data']='admin/rooms/get_room_data';
+$route['admin/hotels/rooms/roomlist']='admin/rooms/show_room_content';
+$route['admin/hotels/rooms/edit_room_content']='admin/rooms/edit_room_content';
+$route['admin/hotels/rooms/add_room_content']='admin/rooms/add_room_content';
+$route['admin/hotels/rooms/add_room']='admin/rooms/add_room';
+$route['admin/hotels/rooms/edit_room']='admin/rooms/edit_room';
+$route['admin/hotels/rooms/dlt_room']='admin/rooms/dlt_room';
+
+

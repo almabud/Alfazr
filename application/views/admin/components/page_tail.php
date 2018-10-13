@@ -1,7 +1,7 @@
 <?php
-$check_uri=rtrim('admin/user/login/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
+$check_uri=rtrim('login/'.$this->uri->segment(2).'/'.$this->uri->segment(3),'/');
 $check_uri2=rtrim('admin/user/re_send_email/'.$this->uri->segment(4),'/');
-if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && uri_string()!=$check_uri2 && uri_string()!=$check_uri) { ?>
+if(uri_string()!='login' && uri_string()!='register' && uri_string()!=$check_uri2 && uri_string()!=$check_uri) { ?>
 <!-- START FOOTER -->
 <footer class="page-footer gradient-45deg-purple-deep-orange">
     <div class="footer-copyright">
@@ -56,16 +56,20 @@ if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && ur
     <script type="text/javascript" src="<?php echo site_url('js/hotel_ajax.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo site_url('js/pekeUpload.js'); ?>"></script>
     <?php } ?>
-   <?php if(uri_string()=='admin/rooms'){ ?>
+   <?php if(uri_string()=='admin/hotels/rooms'){ ?>
    <script type="text/javascript" src="<?php echo site_url('js/room_ajax.js'); ?>"></script>
     <?php } ?>
-    <?php if(uri_string()=='admin/user'|| uri_string()=='admin/user/register' || uri_string()==$check_uri){ ?>
+    <?php if(uri_string()=='admin/user'|| uri_string()=='register' || uri_string()==$check_uri){ ?>
    <script type="text/javascript" src="<?php echo site_url('js/user.js'); ?>"></script>
     <?php } ?>
-   
+    <?php  if(uri_string()=='admin/reservation') { ?>
+    <script type="text/javascript" src="<?php echo site_url('js/reservation_ajax.js'); ?>"></script>
+    <?php } ?>
+    <?php  if(uri_string()=='admin/payment') { ?>
+    <script type="text/javascript" src="<?php echo site_url('js/payment.js'); ?>"></script>
+    <?php } ?>
    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
- 
     <script type="text/javascript" src="<?php echo site_url('vendors/froala/js/froala_editor.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo site_url('vendors/froala/js/froala_editor.pkgd.min.js'); ?>"></script>
    
@@ -78,7 +82,23 @@ if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && ur
 
 
   <script>
-      
+      $('.slider').slider({
+        indicators:false,
+        duration:1000,
+        interval:2000
+    });
+    $('.carousel').carousel({
+        duration:500,
+        fullWidth:true,
+        indicators:true
+    });
+    var auto_play=true;
+    setInterval(function() {
+        if(auto_play){
+            $('.carousel').carousel('next');
+        }
+    }, 6000);
+    $('.carousel').hover(function(){ auto_play = false; },function(){ auto_play = true; });
  </script>
     </body>
     </html>

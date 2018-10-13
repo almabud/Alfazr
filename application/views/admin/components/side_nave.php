@@ -7,15 +7,15 @@
  */
 ?>
 <aside id="left-sidebar-nav" class="nav-expanded nav-lock nav-collapsible">
-    <div class="brand-sidebar">
+    <div class="brand-sidebar  blue darken-4">
         <h1 class="logo-wrapper">
-            <a href="index.html" class="brand-logo darken-1">
+            <a href="dashboard" class="brand-logo darken-1">
                 <img src="<?php echo site_url('images/logo/materialize-logo.png'); ?>" alt="materialize logo">
                 <span class="logo-text hide-on-med-and-down">Materialize</span>
             </a>
-            <a href="#" class="navbar-toggler">
+            <!-- <a href="#" class="navbar-toggler">
                 <i class="material-icons">radio_button_checked</i>
-            </a>
+            </a> -->
         </h1>
     </div>
     <ul id="slide-out" class="side-nav fixed leftside-navigation">
@@ -33,24 +33,6 @@
                         <span class="nav-text">Mailbox</span>
                     </a>
                 </li>
-
-                <li class="bold">
-                    <a class="collapsible-header  waves-effect waves-cyan">
-                        <i class="material-icons">account_circle</i>
-                        <span class="nav-text">User</span>
-                    </a>
-                    <div class="collapsible-body">
-                        <ul>
-                            <li>
-                                <a href="<?php echo site_url('admin/dashboard/profile'); ?>">
-                                    <i class="material-icons">keyboard_arrow_right</i>
-                                    <span>User Profile</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
                 <li class="bold">
                     <a class="collapsible-header  waves-effect waves-cyan">
                         <i class="material-icons">hotel</i>
@@ -65,7 +47,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<?php echo site_url('admin/rooms'); ?>">
+                                <a href="<?php echo site_url('admin/hotels/rooms'); ?>">
                                     <i class="material-icons">keyboard_arrow_right</i>
                                     <span>Room list</span>
                                 </a>
@@ -73,6 +55,31 @@
                         </ul>
                     </div>
                 </li>
+                <li class="bold">
+                    <a href="<?php echo base_url().'/admin/reservation' ?>" class="waves-effect waves-cyan">
+                        <i class="material-icons">label</i>
+                        <span class="nav-text">Reservation</span>
+                    </a>
+                </li>
+
+                <li class="bold">
+                    <a class="collapsible-header  waves-effect waves-cyan">
+                        <i class="material-icons">account_circle</i>
+                        <span class="nav-text">User</span>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul>
+                            <li>
+                                <a href="<?php echo site_url('user/profile'); ?>">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                    <span>User Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                
             </ul>
         </li>
         <li>

@@ -1,11 +1,4 @@
- <div class="row margin hr_content_header">
-        <div class="col s12 header">
-        <h4> Add <span style="font-size:18px">New Room</span></h4>
-        </div>
-        <div class="right"> <a class="waves-effect waves-light btn" id="list_room_btn" onclick="show_room_content()" style="margin: 5px !important;">List rooms</a></div>
-        <div class="right"> <a class="waves-effect waves-light btn" id="refresh_room_btn"  onclick="refresh()" style="margin: 5px !important;">Refresh</a></div>
-    </div>
-    <form  method="post" enctype="multipart/form-data">
+<form  method="post" enctype="multipart/form-data">
     <input type="text" name="id" style="display:none;">
        <div class="row margin">
             <div class="input-field col s12">

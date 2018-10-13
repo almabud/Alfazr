@@ -19,6 +19,13 @@ class Migration_Create_hotel extends CI_Migration {
             ),
             'about' => array(
                 'type' => 'TEXT'
+            ),
+            'status' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100'
+            ),
+            'created_date_time' => array(
+                'type' => 'timestamp not null default current_timestamp'
             )
 		));
 		$this->dbforge->add_key('id');

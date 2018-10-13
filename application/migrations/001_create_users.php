@@ -37,7 +37,8 @@ class Migration_Create_users extends CI_Migration {
 				'constraint' => '100'
 			),
             'd_birth' => array(
-                'type' => 'DATE'
+                'type' => 'VARCHAR',
+                'constraint' => '100'
             ),
             'gender' => array(
                 'type' => 'VARCHAR',

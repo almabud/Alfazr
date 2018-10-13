@@ -4,7 +4,7 @@ $(document).ready(function(e){
     activation();
     re_send_email();
     $('.modal').modal({
-        dismissible: true, // Modal can be dismissed by clicking outside of the modal
+      dismissible: true, // Modal can be dismissed by clicking outside of the modal
       opacity: .5, // Opacity of modal background
       inDuration: 300, // Transition in duration
       outDuration: 200, // Transition out duration
@@ -23,7 +23,7 @@ function login()
         $('#success').html('');
         var base_url = window.location.origin;
         var pathArray = window.location.pathname.split( '/' );
-        var url=base_url+'/'+pathArray[1]+'/'+pathArray[2]+'/admin/user/login';
+        var url=base_url+'/'+pathArray[1]+'/'+pathArray[2]+'/login';
         
         $.ajax({
             url: url,
@@ -38,7 +38,10 @@ function login()
                 if(data.error)
                   $('#error').html(data.error);
                 else
-                  window.location.replace(data.success);
+                  {
+                    var url=base_url+'/'+pathArray[1]+'/'+pathArray[2]+'/'+data.success;
+                    window.location.replace(url);
+                  }
             }
         });
     }))
@@ -154,6 +157,7 @@ function re_send_email()
                         $('#error').html('');
                         $('#success').html('');
                         $('.modal').modal('close');
+                        window.location.replace('login');
                         });
                 }
             }

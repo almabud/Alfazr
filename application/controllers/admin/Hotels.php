@@ -8,7 +8,7 @@ class Hotels extends Admin_Controller {
 
     public function index() {
         if(!$this->user_m->loggedin())
-            redirect('admin/user/login');
+            redirect('user/login');
         $this->data= $this->profile_m->get_profile_data();
         $this->load->view('admin/hotel_page', $this->data);
     }

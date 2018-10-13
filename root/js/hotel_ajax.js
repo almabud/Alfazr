@@ -12,6 +12,15 @@ function show_hotel_content()
          type: 'POST',
          async: false,
          success: function(data){
+            var html = `
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="add_hotel_btn">
+                          <i class="material-icons hide-on-med-and-up">add</i>
+                          <span class="hide-on-small-onl">Add hotel</span>
+                        </a>
+                        `;
+             $('.breadcrumbs-title').html('Add Hotel');
+             $('.active2').html('Hotel List');
+             $('.breadcrumbs-btn').html(html);
              $('#midle-content').html(data);
              show_hotels();
              $('#data-table-simple').dataTable({
@@ -108,6 +117,19 @@ function add_hotel_content()
         type: "POST",
         success: function(data)
             {
+                 var html = `
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="list_hotel_btn" onclick="show_hotel_content()" style="margin: 5px !important;">
+                            <i class="material-icons hide-on-med-and-up">add</i>
+                            <span class="hide-on-small-onl">List hotel</span>
+                        </a>
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="refresh_hotel_btn"  onclick="refresh()" style="margin: 5px !important;">
+                            <i class="material-icons hide-on-med-and-up">add</i>
+                            <span class="hide-on-small-onl">Clear</span>
+                        </a>
+                        `;
+             $('.breadcrumbs-title').html('Add Hotel');
+             $('.active2').html('Add Hotel');
+             $('.breadcrumbs-btn').html(html);
                 $('#midle-content').html(data);
                 $('form').attr('id','add_hotel');
                 $('form').attr('action','hotels/add_hotel');
@@ -116,7 +138,7 @@ function add_hotel_content()
                     charCounterCount: false,
                     emoticonsUseImage: true,
                     height:300,
-                    imageUploadURL: 'froala_image_upload',
+                    imageUploadURL: 'hotels/froala_image_upload',
                     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertImage', 'insertVideo', 'insertTable', '|', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'html', '|', 'undo', 'redo']
                  });
                  add_hotel();
@@ -182,8 +204,21 @@ function edit_hotel_content(edit_data)
                      dataType: "json",
                      success:function(hotel_data)
                      {
+                        var html = `
+                        <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="list_hotel_btn" onclick="show_hotel_content()" style="margin: 5px !important;">
+                            <i class="material-icons hide-on-med-and-up">add</i>
+                            <span class="hide-on-small-onl">List hotel</span>
+                        </a>
+                       <a class="btn dropdown-settings waves-effect waves-light breadcrumbs-btn right gradient-45deg-light-blue-cyan gradient-shadow" id="refresh_hotel_btn"  onclick="refresh()" style="margin: 5px !important;">
+                            <i class="material-icons hide-on-med-and-up">add</i>
+                            <span class="hide-on-small-onl">Clear</span>
+                        </a>
+                        `;
+                        $('.breadcrumbs-title').html('Edit Hotel');
+                        $('.active2').html('Edit Hotel');
+                        $('.breadcrumbs-btn').html(html);
                         $('#midle-content').html(data);
-                        $('.header').html('<h4> Edit <span style="font-size:18px">Hotel</span></h4>');
+                        
                         $('form').attr('id','edit_hotel');
                         $('form').attr('action','hotels/edit_hotel');
                         $('#submit_button').html('<input type="submit" id="eh_submit" class="btn waves-effect waves-light col s12" value="Edit">');

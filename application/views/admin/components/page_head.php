@@ -26,7 +26,7 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <!-- CORE CSS-->
     <link href="<?php echo site_url('css/themes/collapsible-menu/materialize.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('css/themes/collapsible-menu/style.css'); ?>" type="text/css" rel="stylesheet">
-    <?php if(site_url()!='admin/dashboard/profile' && uri_string()!= 'admin/hotels' && uri_string()!= 'admin/rooms'){ ?>
+    <?php if(site_url()!='user/profile' && uri_string()!= 'admin/hotels' && uri_string()!= 'admin/hotels/rooms' && uri_string()!= 'admin/slider' && uri_string()!= 'admin/dashboard' && uri_string()!= 'admin/reservation' && uri_string()!= 'admin/payment'){ ?>
     <link href="<?php echo site_url('css/layouts/page-center.css'); ?>" type="text/css" rel="stylesheet">
     <?php } ?>
     
@@ -58,42 +58,34 @@ Author URL: https://themeforest.net/user/pixinvent/portfolio
     <!-- Custome CSS-->
     <link href="<?php echo site_url('css/custom/custom_style.css'); ?>" type="text/css" rel="stylesheet">
     <link href="<?php echo site_url('css/custom/preloader.css'); ?>" type="text/css" rel="stylesheet">
+    <link href="<?php echo site_url('css/custom/animate.css'); ?>" type="text/css" rel="stylesheet">
 
 
   </head>
 <?php
 $body_color=null;
-$check_uri=rtrim('admin/user/login/'.$this->uri->segment(4).'/'.$this->uri->segment(5),'/');
+$check_uri=rtrim('login/'.$this->uri->segment(2).'/'.$this->uri->segment(3),'/');
 $check_uri2=rtrim('admin/user/re_send_email/'.$this->uri->segment(4),'/');
-if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || uri_string()==$check_uri ||uri_string()==$check_uri2)
+if(uri_string()=='login' || uri_string()=='register' || uri_string()==$check_uri ||uri_string()==$check_uri2)
     $body_color='cyan';
 ?>
 <body class="<?php echo $body_color; ?>">
 <!-- Start Page Loading -->
-<div id="loader-wrapper">
+<!-- <div id="loader-wrapper">
     <div id="loader"></div>
     <div class="loader-section section-left"></div>
     <div class="loader-section section-right"></div>
-</div>
-<?php if(uri_string()!='admin/user/login' && uri_string()!='admin/user/register' && uri_string()!=$check_uri && uri_string()!=$check_uri2) { ?>
+</div> -->
+<?php if(uri_string()!='login' && uri_string()!='register' && uri_string()!=$check_uri && uri_string()!=$check_uri2) { ?>
 <!-- End Page Loading -->
 <!-- //////////////////////////////////////////////////////////////////////////// -->
 <!-- START HEADER -->
     <header id="header" class="page-topbar">
         <!-- start header nav-->
         <div class="navbar-fixed">
-            <nav class="navbar-color gradient-45deg-purple-deep-orange gradient-shadow">
+            <nav class="navbar-color  blue darken-4 gradient-shadow">
                 <div class="nav-wrapper">
-                    <div class="header-search-wrapper hide-on-med-and-down sideNav-lock">
-                        <i class="material-icons">search</i>
-                        <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Explore Materialize" />
-                    </div>
                     <ul class="right hide-on-med-and-down">
-                        <li>
-                            <a href="javascript:void(0);" class="waves-effect waves-block waves-light translation-button" data-activates="translation-dropdown">
-                                <span class="flag-icon flag-icon-gb"></span>
-                            </a>
-                        </li>
                         <li>
                             <a href="javascript:void(0);" class="waves-effect waves-block waves-light toggle-fullscreen">
                                 <i class="material-icons">settings_overscan</i>
@@ -119,30 +111,6 @@ if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || ur
                             <i></i>
                           </span>
                             </a>
-                        </li>
-                        <li>
-                            <a href="#" data-activates="chat-out" class="waves-effect waves-block waves-light chat-collapse">
-                                <i class="material-icons">format_indent_increase</i>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- translation-button -->
-                    <ul id="translation-dropdown" class="dropdown-content">
-                        <li>
-                            <a href="#!" class="grey-text text-darken-1">
-                                <i class="flag-icon flag-icon-gb"></i> English</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="grey-text text-darken-1">
-                                <i class="flag-icon flag-icon-fr"></i> French</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="grey-text text-darken-1">
-                                <i class="flag-icon flag-icon-cn"></i> Chinese</a>
-                        </li>
-                        <li>
-                            <a href="#!" class="grey-text text-darken-1">
-                                <i class="flag-icon flag-icon-de"></i> German</a>
                         </li>
                     </ul>
                     <!-- notifications-dropdown -->
@@ -182,12 +150,8 @@ if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || ur
                     <!-- profile-dropdown -->
                     <ul id="profile-dropdown" class="dropdown-content">
                         <li>
-                            <a href="#" class="grey-text text-darken-1">
+                            <a href="<?php echo site_url('user/profile'); ?>" class="grey-text text-darken-1">
                                 <i class="material-icons">face</i> Profile</a>
-                        </li>
-                        <li>
-                            <a href="#" class="grey-text text-darken-1">
-                                <i class="material-icons">settings</i> Settings</a>
                         </li>
                         <li>
                             <a href="#" class="grey-text text-darken-1">
@@ -195,11 +159,7 @@ if(uri_string()=='admin/user/login' || uri_string()=='admin/user/register' || ur
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#" class="grey-text text-darken-1">
-                                <i class="material-icons">lock_outline</i> Lock</a>
-                        </li>
-                        <li>
-                            <a href="<?php echo site_url('admin/user/logout'); ?>" class="grey-text text-darken-1">
+                            <a href="<?php echo site_url('logout'); ?>" class="grey-text text-darken-1">
                                 <i class="material-icons">keyboard_tab</i> Logout</a>
                         </li>
                     </ul>

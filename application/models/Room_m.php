@@ -57,29 +57,24 @@ class Room_m extends MY_Model{
         }
         else
         {
-        $sql="select * from hotels h, rooms r where(h.id=r.hotel_id) order by r.id DESC";
+        $sql="select * from hotels h, rooms r where(h.id=r.hotel_id and h.status = 'active' and r.status = 'active') order by r.id DESC";
         $query = $this->db->query($sql);
         return $query->result();
         }
        
     }
-    public function dlt_room_m()
+    public function dlt_room_m($data,$id)
     {
-       $this->_table_name='rooms';
-       $id=$this->input->post('id');
-       return  $this->delete($id);
+        $this->_table_name='rooms';
+        return $this->save($data,$id);
     }
     public function add_room_m($data)
     {
-        $this->_table_name='backup_rooms';
-        $this->save($data);
         $this->_table_name='rooms';
 		return $this->save($data);
     }
     public function edit_room_m($data,$id)
     {
-        $this->_table_name='backup_rooms';
-        $this->save($data,$id);
         $this->_table_name='rooms';
 		return $this->save($data,$id);
     }

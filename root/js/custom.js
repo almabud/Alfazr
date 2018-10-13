@@ -8,6 +8,7 @@ $(document).ready(function() {
         $('#add_photos').removeClass("hide");
     });
     $('#edit_profile').click(function () {
+        $('#add_photos').addClass("hide");
         $('#edit_profile_msg').removeClass("hide");
         $('#submit').removeClass("hide");
         $('#f_name').removeAttr("readonly");

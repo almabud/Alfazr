@@ -40,8 +40,7 @@
                         <div class="card-content">
                             <div class="row pt-2">
                                 <div class="col s12 m4 offset-m2">
-                                    <h4 class="card-title grey-text text-darken-4"><?php echo $f_name." ".$l_name; ?></h4>
-                                    <p class="medium-small grey-text"><?php echo $role; ?></p>
+                                    <h4 class="card-title grey-text text-darken-4"><?php echo $F_name.' '.$L_name.' <span class="medium-small grey-text">('.$role.')</span>'; ?></h4>
                                 </div>
                                 <div class="col s12 m1 right-align right">
                                     <a class="btn-floating activator waves-effect waves-light rec accent-2 right">
@@ -52,38 +51,25 @@
                         </div>
                         <div class="card-reveal">
                             <p>
-                    <span class="card-title grey-text text-darken-4"><i class="material-icons cyan-text text-darken-2" style="font-size: 30px !important;">perm_identity</i><?php echo $f_name." ".$l_name; ?>
-                      <i class="material-icons right">close</i>
-                    </span>
-                                <span>
-                      <i class="material-icons cyan-text text-darken-2">accessibility</i> <?php echo $this->session->userdata('role'); ?></span>
+                                <span class="card-title grey-text text-darken-4"><i class="material-icons cyan-text text-darken-2" style="font-size: 30px !important;">perm_identity</i><?php echo $F_name." ".$L_name; ?>
+                                  <i class="material-icons right">close</i>
+                                </span>
+                                <span> <i class="material-icons cyan-text text-darken-2">accessibility</i> <?php echo $this->session->userdata('role'); ?></span>
                             </p>
                             <p>
                                 <i class="material-icons cyan-text text-darken-2">perm_phone_msg</i> <?php echo $contact_no; ?></p>
                             <p>
                                 <i class="material-icons cyan-text text-darken-2">email</i> <?php echo $this->session->userdata('email'); ?></p>
                             <p>
-                                <i class="material-icons cyan-text text-darken-2">cake</i> <?php echo nice_date($d_birth,'d M Y'); ?></p>
+                                <i class="material-icons cyan-text text-darken-2">cake</i> <?php  echo $d_birth; ?></p>
                             <p>
                         </div>
                     </div>
                     <!--/ profile-page-header -->
                     <!-- profile-page-content -->
                     <div id="profile-page-content" class="row">
-                        <!-- profile-page-sidebar-->
-                        <div id="profile-page-sidebar" class="col s12 m4">
-                            <!-- Profile About  -->
-                            <div class="card cyan">
-                                <div class="card-content white-text">
-                                    <span class="card-title">About Me!</span>
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-                                </div>
-                            </div>
-                            <!-- Profile About  -->
-                        </div>
-                        <!-- profile-page-sidebar-->
                         <!-- profile-page-wall -->
-                        <div id="profile-page-wall" class="col s12 m8">
+                        <div id="profile-page-sidebar" class="col s12">
                             <!-- profile-page-wall-share -->
                             <div id="profile-page-wall-share" class="row">
                                 <div class="col s12">
@@ -98,12 +84,6 @@
                                         </li>
                                     </ul>
                                         <!--Edit profile-->
-                                   
-                                    <!-- Add photos-->
-                                    <!--<div id="AddPhotos" class="tab-content col s12  grey lighten-4">
-
-                                    </div>-->
-
                                     <div id="add_photos" class="row hide">
                                         <div class="col s12">
                                             <div class="card">
@@ -116,7 +96,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col s12">
-                                                            <form action="add_photos/<?php echo $this->session->userdata('id'); ?>" method="post" enctype="multipart/form-data">
+                                                            <form action="<?php echo site_url('user/profile/update/photo').'/'.$this->session->userdata('id'); ?>" method="post" enctype="multipart/form-data">
                                                                 <div class="row margin">
                                                                     <div id="file-upload" class="section">
                                                                         <div class="row section">
@@ -172,7 +152,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col s12">
-                                                    <form action="update_profile_c/<?php echo $this->session->userdata('id'); ?>" class="" method="post">
+                                                    <form action="profile/update/<?php echo $this->session->userdata('id'); ?>" class="" method="post">
                                                         <div class="row margin">
                                                             <div class="input-field col s12">
                                                                 <input id="f_name" type="text" name="f_name" value="<?php echo $F_name; ?>" readonly>
@@ -252,6 +232,19 @@
                             <!--/ profile-page-wall-posts -->
                         </div>
                         <!--/ profile-page-wall -->
+                         <!-- profile-page-sidebar-->
+                        <div id="profile-page-sidebar" class="col s12 m4">
+                            <!-- Profile About  -->
+                            <div class="card cyan">
+                                <div class="card-content white-text">
+                                    <span class="card-title"></span>
+                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                </div>
+                            </div>
+                            <!-- Profile About  -->
+                        </div>
+                        <!-- profile-page-sidebar-->
+
                     </div>
                 </div>
             </div>

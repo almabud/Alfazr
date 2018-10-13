@@ -40,6 +40,10 @@ class Migration_Create_room extends CI_Migration {
 				'constraint' => 11,
 				'unsigned' => TRUE
             ),
+             'status' => array(
+                'type' => 'VARCHAR',
+                'constraint' => '100'
+            ),
             'created_date_time' => array(
                 'type' => 'timestamp not null default current_timestamp'
             )

@@ -73,7 +73,8 @@ class User_m extends MY_Model
        if(count((array) $user))
         {
             if ($user['status']!='active')
-               $result['error']['active']='This acount isn\'t activate yet.' ;
+               $result['error']['active']='Your account has\'t activate yet.</br>
+             <a href="#resend_mail_modal" class="modal-trigger" style="color: red !important;"> haven\'t recieved activation mail?</a>';
             else
                $result['error']['register'] ='An account is already registered.';
         }
@@ -87,7 +88,7 @@ class User_m extends MY_Model
                 'status'=>'',
                 'F_name'=>'',
                 'L_name'=>'',
-                'd_birth'=>'0000-00-00',
+                'd_birth'=>'',
                 'gender'=>'',
                 'country'=>'',
                 'Address'=>'',
@@ -99,16 +100,24 @@ class User_m extends MY_Model
             if(!$id=$this->save($data))
              $result['error']['error']='Technical problem.';
             else
-             return $id;
+             {
+              $data=array(
+                'profile_id'=>$id,
+                'amount'=>'0.00'
+              );
+              $this->_table_name='account_balance';
+              $this->save($data);
+              return $id;
+            }
         }
          return $result;
     }
    public function activate_m()
    {
        
-       $code=$this->uri->segment(5);
+       $code=$this->uri->segment(3);
        $this->_primary_key='email';
-       $email=$this->uri->segment(4);
+       $email=$this->uri->segment(2);
        $email=urldecode($email);
        $user=(array)$this->get($email,TRUE);
        $this->_primary_key='id';

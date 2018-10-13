@@ -7,14 +7,14 @@ class Dashboard extends Admin_Controller {
 
     public function index() {
         if(!$this->user_m->loggedin())
-            redirect('admin/user/login');
+            redirect('login');
         $this->data= $this->profile_m->get_profile_data();
         $this->load->view('admin/_layout_main', $this->data);
     }
     public function profile()
     {
         if(!$this->user_m->loggedin())
-            redirect('admin/user/login');
+            redirect('login');
         $this->data = $this->profile_m->get_profile_data();
         $this->load->view('admin/profile', $this->data);
     }
@@ -49,7 +49,7 @@ class Dashboard extends Admin_Controller {
            );
         }
         $current_photo=$this->profile_m->get_profile_data();
-        if(!$this->profile_m->do_upload_photo($file_data,$this->uri->segment(4)))
+        if(!$this->profile_m->do_upload_photo($file_data,$this->uri->segment(5)))
         {
             unlink($path.'/'.$file_data['cover_photo']);
             unlink($path.'/'.$file_data['profile_photo']);
@@ -61,7 +61,7 @@ class Dashboard extends Admin_Controller {
              if($profile_photo != NULL)
                unlink($path.'/'.$current_photo['profile_photo']);
         }
-        redirect('admin/dashboard/profile');
+        redirect('user/profile');
     }
     function  update_profile_c()
     {
@@ -70,14 +70,8 @@ class Dashboard extends Admin_Controller {
         if ($this->form_validation->run() == TRUE)
         {
             $this->profile_m->update_profile();
-
-            // if(!$this->profile_m->update_profile())
-            // {
-            //     $this->session->set_flashdata('error', 'Updated unsuccessful');
-            // }
         }
-        redirect('admin/dashboard/profile');
-
+        redirect('user/profile');
     }
 
 
